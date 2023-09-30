@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+class Time
+{
+    int h,m,s;
+public:
+    void setT(int x,int y,int z)
+    {
+        h=x;
+        m=y;
+        s=z;
+    }
+    void showT()
+    {
+        normalize();
+        cout<<h<<"h:"<<m<<"m:"<<s<<"s"<<endl;
+    }
+
+//normalize function to set standard time
+    void normalize()
+    {
+        m=m+s/60;
+        s=s%60;
+        h=h+m/60;
+        m=m%60;
+    }
+
+    Time operator +(Time t) // Operator plus + Overloading
+    {
+        Time temp;
+        temp.s=s+t.s;
+        temp.m=m+t.m;
+        temp.h=h+t.h;
+        temp.normalize();
+        return temp;
+
+    }
+
+    int operator > (Time t) //operator greater than > overloading
+    {
+        if(h>t.h)
+            return 1;
+        else if(h<t.h)
+            return 0;
+        else if(m>t.m)
+            return 1;
+        else if(m<t.m)
+            return 0;
+        else if(s>t.s)
+            return 0;
+        else
+            return 0;
+    }
+};
+
+int main() // main function
+{
+    Time t1,t2,t3;
+    t1.setT(2,99,78);
+    t2.setT(3,37,84);
+
+    if(t1>t2)
+        t1.showT();
+    else
+        t2.showT();
+
+    t3=t1+t2; // t1 called plus operator,passed t2 as an arguments,the object returned plus operator assigned to t3.
+    t3.showT();
+    return 0;
+
+}
