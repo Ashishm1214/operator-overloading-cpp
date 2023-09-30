@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+class Integer
+{
+private:
+    int x;
+
+public:
+    void setdata(int a)
+    {
+        x=a;
+    }
+    void showdata()
+    {
+        cout<<"X = "<<x;
+    }
+
+    Integer operator++ () // pre increment
+    {
+        Integer i;
+        i.x=++x;
+        return i;
+    }
+
+    Integer operator++(int) //post increment we have passed arguments here as per standard c++ to know that it is post increment by compiler
+    {
+        Integer i;
+        i.x=x++;
+        return i;
+    }
+};
+
+int main()
+{
+    Integer i1,i2,i3;
+    i1.setdata(3);
+    i1.showdata();
+    cout<<endl;
+    i2=++i1;
+    i1.showdata();
+    cout<<endl;
+    i2.showdata();
+    cout<<endl;
+    i3=i1++;
+    i3.showdata();
+    cout<<endl;
+    i1.showdata();
+    return 0;
+}
